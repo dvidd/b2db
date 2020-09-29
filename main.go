@@ -14,10 +14,11 @@ func main() {
     checkdb();
 }
 
+const dbName = "db.b2db"
 
 
 func checkdb() {
-    if _, err := os.Stat("DB.2db"); err == nil {
+    if _, err := os.Stat(dbName); err == nil {
         // path/to/whatever exists
         fmt.Println("\n Database exists");
 
@@ -37,7 +38,7 @@ func checkdb() {
 }
 
 func createfile() {
-    err := ioutil.WriteFile("DB.2db", []byte("Hello"), 0755)
+    err := ioutil.WriteFile(dbName, []byte("Hello"), 0755)
     if err != nil {
         fmt.Printf("Unable to write file: %v", err)
     }
