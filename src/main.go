@@ -1,6 +1,3 @@
-
-// Back2DB
-
 package main
 
 import (
@@ -12,9 +9,12 @@ import (
 func main() {
 	fmt.Println("Hello, 世界");
     checkdb();
+    for i:= 0; i < 10; i++ {
+        fmt.Println(i)
+    }
 }
 
-const dbName = "db.b2db"
+const dbName = "db.d2b2"
 
 
 func checkdb() {
@@ -44,11 +44,16 @@ func createfile() {
     }
 }
 
-func add() {
+func add(doc ) {
+
    // return 0
 }
 
-func read() {
+func read(doc string) {
     // return 0    
+}
+
+func delete(doc string) {
+
 }
 
