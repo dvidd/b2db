@@ -12,9 +12,10 @@ func main() {
     for i:= 0; i < 10; i++ {
         fmt.Println(i)
     }
+    return
 }
 
-const dbName = "db.d2b2"
+const dbName = "db.json"
 
 
 func checkdb() {
@@ -22,7 +23,7 @@ func checkdb() {
         // path/to/whatever exists
         fmt.Println("\n Database exists");
 
-    }else if os.IsNotExist(err) {
+   }else if os.IsNotExist(err) {
         // path/to/whatever does *not* exist
         fmt.Println("\n Database does not exists");
         fmt.Println("\n Creating file...");
@@ -32,7 +33,6 @@ func checkdb() {
         // Schrodinger: file may or may not exist. See err for details.
         fmt.Println("\n Something went wrong while creatring the database");
         // Therefore, do *NOT* use !os.IsNotExist(err) to test for file existence
-
 
 }
 }
@@ -44,16 +44,11 @@ func createfile() {
     }
 }
 
-func add(doc ) {
-
-   // return 0
+func add(doc string) {
+    return
 }
+
 
 func read(doc string) {
-    // return 0    
+    return 
 }
-
-func delete(doc string) {
-
-}
-
