@@ -3,14 +3,14 @@ Database backend fusion
 ## How it works :
 
 The aplication sets a server working on : 
+```localhost:3000 ```
 
-'''localhost:3000''''''
+## Functions :
 
-# You can do 4 things :
-
-Put()
-/put/
-
+#### Put() Method = [POST]
+```
+localhost:3000/put/
+```
 Params to send {
 
     index: "/main/app/..",
