@@ -38,14 +38,15 @@ Read a document or an enterie collection
 ```
 localhost:3000/read/
 ```
+{
 Params to send {
 
     index: "/main/app/..",
        key: "[YOUR_KEY]",
 
 
-    }
-
+   }
+}
 
 #### update( ) Method = [POST]
 Update a document
