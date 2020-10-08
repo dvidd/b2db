@@ -7,7 +7,6 @@ import (
     "net/http"
     "os"
     "io/ioutil"
-    "encoding/json"
 
 )
 
@@ -35,7 +34,7 @@ func checkdb() {
         // Therefore, do *NOT* use !os.IsNotExist(err) to test for file existence
 
 }
-    jsonFile, err := os.Open(dbName)
+  //   jsonFile, err := os.Open(dbName)
 }
 
 func createfile() {

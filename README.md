@@ -75,3 +75,11 @@ Params to send {
 
 
 ```
+
+### Data parameter :
+
+- Have to be a json
+- Or a value if is the case of updating a value
+
+
+
