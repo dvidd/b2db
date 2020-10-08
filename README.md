@@ -3,12 +3,13 @@ Database backend fusion
 
 ## Get started
 ```
-git clone https://github.com/dvidd/b2db/
-
-cd b2db
-
-docker run 
-
+$ git clone https://github.com/dvidd/b2db/
+```
+```
+$ cd b2db
+```
+```
+$ docker run 
 ```
 
 
