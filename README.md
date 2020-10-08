@@ -1,7 +1,18 @@
 # b2db
-Database backend fusion 
-## How it works :
+Database backend fusion
 
+## Get started
+```
+git clone https://github.com/dvidd/b2db/
+
+cd b2db
+
+docker run 
+
+```
+
+
+## How it works :
 The aplication sets a server working on : 
 ```localhost:3000 ```
 
