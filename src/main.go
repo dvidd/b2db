@@ -7,12 +7,24 @@ import (
     "net/http"
     "os"
     "io/ioutil"
-
+    "encoding/json"
 )
 
 // Check if index collection 
 
 const dbName = "db.json"
+
+
+func tool_put(index string,key string,j map[string]interface{}) {
+    fmt.Println(index)
+    fmt.Println(key)
+    
+    for k, v := range j {
+        fmt.Printf("%v %v\n", k, v)
+                         
+    }
+
+}
 
 
 
@@ -46,9 +58,9 @@ func createfile() {
 
 
 
-func add(w http.ResponseWriter, r *http.Request) {
-        if r.URL.Path != "/add" {
-            http.Error(w, "404 not found.", http.StatusNotFound)
+func put(w http.ResponseWriter, r *http.Request) {
+        if r.URL.Path != "/put" {
+            http.Error(w, "You should try on POST", http.StatusNotFound)
             return
                                 
         }
@@ -63,14 +75,22 @@ func add(w http.ResponseWriter, r *http.Request) {
                     return
                                                                                          
             }   
+            
             fmt.Fprintf(w, "Post from website! r.PostFrom = %v\n", r.PostForm)
-            name := r.FormValue("name")
-            address := r.FormValue("address")
-            fmt.Fprintf(w, "Name = %s\n", name)
-            fmt.Fprintf(w, "Address = %s\n", address)
-    
+            index := r.FormValue("index")
+            key := r.FormValue("key")
+            data := r.FormValue("data")
+            
+            fmt.Println("Put request")
+            
+            fmt.Println(index,key,data)
+            
+            // tool_put(index,key,data)
+
+
+
             default:
-            fmt.Fprintf(w, "Sorry, only GET and POST methods are supported.")
+                fmt.Fprintf(w, "Sorry, only GET and POST methods are supported.")
                                                                                                                  
     }
             
@@ -78,13 +98,25 @@ func add(w http.ResponseWriter, r *http.Request) {
 
 
 
-
-
 func main() {
 
-    checkdb()
+    var b = []byte(`{"a":"b", "c":1, "d": ["e", "f"]}`)
+    var j map[string]interface{}
+        err := json.Unmarshal(b, &j)
+            if (err != nil) {
+        return
+                                 
+    }
 
-    http.HandleFunc("/add", add)
+
+    tool_put("index","key",j)
+
+    
+
+
+    //checkdb()
+
+    //http.HandleFunc("/put", put)
     //http.HandleFunc("/delete" , delete)
     //http.HandleFunc("/read" , read)
     //http.HandleFunc("/update", update)
