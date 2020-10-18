@@ -1,73 +1,40 @@
+/* 
+Key Value store api really simple
+
+This file sets a server in port 3000 that is waiting 4 types of petitions
+
+read()
+add()
+delete()
+update()
+
+There is two types of structures which are ;
+    - collection
+    - document
+
+You can read, add, delete a collection and read,update and delete a document 
+
+To get any petition it have to have the secret key
+
+ */
+
+
 package main
 
 
 import (
     "fmt"
-    // "log"
     "net/http"
-    "os"
-    "io/ioutil"
-    "encoding/json"
+    "log"
+    "github.com/syndtr/goleveldb/leveldb" 
 )
 
-// Check if index collection 
-const dbName = "db.json"
+// func _auth(key string) {
+    
+// }
 
-
-func checkdb() {
-    if _, err := os.Stat(dbName); err == nil {
-        fmt.Println("\n Database exists");
-   }else if os.IsNotExist(err) {
-        fmt.Println("\n Database does not exists");
-        fmt.Println("\n Creating file...");
-        createfile();
-    } else {
-        fmt.Println("\n Something went wrong while creatring the database");
-}
-
-}
-
-func createfile() {
-    err := ioutil.WriteFile(dbName, []byte("Hello"), 0755)
-    if err != nil {
-        fmt.Printf("Unable to write file: %v", err)
-    }
-}
-
-
-func read() {
-  //Simple Employee JSON which we will parse
-  empJson := `{
-    "id": 11,
-    "name": "Irshad",
-    "department": "IT",
-    "designation": "Product Manager",
-    "address": {
-        "city": "Mumbai",
-        "state": "Maharashtra",
-        "country": "India"
-    }
-}`
-
-
-	// Declared an empty interface
-	var result map[string]interface{}
-
-	// Unmarshal or Decode the JSON to the interface.
-	json.Unmarshal([]byte(empJson), &result)
-
-	address := result["address"].(map[string]interface{})
-
-	//Reading each value by its key
-	fmt.Println("Id :", result["id"],
-		"\nName :", result["name"],
-		"\nDepartment :", result["department"],
-		"\nDesignation :", result["designation"],
-		"\nAddress :", address["city"], address["state"], address["country"])
-}
-
-func put(w http.ResponseWriter, r *http.Request) {
-        if r.URL.Path != "/put" {
+func add(w http.ResponseWriter, r *http.Request) {
+        if r.URL.Path != "/add" {
             http.Error(w, "You should try on POST", http.StatusNotFound)
             return
                                 
@@ -107,16 +74,16 @@ func put(w http.ResponseWriter, r *http.Request) {
 
 
 func main() {
-
-    read()
-
-
-    
-    // fmt.Printf("Starting server at port 8080\n")
-    //         if err := http.ListenAndServe(":8080", nil); err != nil {
-    //         log.Fatal(err)
+    db, err := leveldb.OpenFile("db.db", nil)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer db.Close()
+    fmt.Printf("Starting server at port 8080\n")
+            if err := http.ListenAndServe(":8080", nil); err != nil {
+            log.Fatal(err)
                                             
-    // }
+    }
                     
                     
 }
