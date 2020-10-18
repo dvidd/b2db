@@ -37,42 +37,33 @@ func createfile() {
 
 func read() {
   //Simple Employee JSON which we will parse
-	empArray := `[
-		{
-			"id": 1,
-			"name": "Mr. Boss",
-			"department": "",
-			"designation": "Director"
-		},
-		{
-			"id": 11,
-			"name": "Irshad",
-			"department": "IT",
-			"designation": "Product Manager"
-		},
-		{
-			"id": 12,
-			"name": "Pankaj",
-			"department": "IT",
-			"designation": "Team Lead"
-		}
-	]`
+  empJson := `{
+    "id": 11,
+    "name": "Irshad",
+    "department": "IT",
+    "designation": "Product Manager",
+    "address": {
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "country": "India"
+    }
+}`
 
-	// Declared an empty interface of type Array
-	var results []map[string]interface{}
+
+	// Declared an empty interface
+	var result map[string]interface{}
 
 	// Unmarshal or Decode the JSON to the interface.
-	json.Unmarshal([]byte(empArray), &results)
+	json.Unmarshal([]byte(empJson), &result)
 
-	for key, result := range results {
+	address := result["address"].(map[string]interface{})
 
-		fmt.Println("Reading Value for Key :", key)
-		//Reading each value by its key
-		fmt.Println("Id :", result["id"],
-			"- Name :", result["name"],
-			"- Department :", result["department"],
-			"- Designation :", result["designation"])
-	}
+	//Reading each value by its key
+	fmt.Println("Id :", result["id"],
+		"\nName :", result["name"],
+		"\nDepartment :", result["department"],
+		"\nDesignation :", result["designation"],
+		"\nAddress :", address["city"], address["state"], address["country"])
 }
 
 func put(w http.ResponseWriter, r *http.Request) {
