@@ -1,12 +1,12 @@
-# dkeyvalue
+# keyvalue
 Distributed key value store made simple using go and leveldb
 
 ## Get started
 ```
-$ git clone https://github.com/dvidd/b2db/
+$ git clone https://github.com/dvidd/keyvalue/
 ```
 ```
-$ cd b2db
+$ cd keyvalue
 ```
 ```
 $ docker run 
@@ -75,11 +75,5 @@ Params to send {
 
 
 ```
-
-### Data parameter :
-
-- Have to be a json
-- Or a value if is the case of updating a value
-
 
 
