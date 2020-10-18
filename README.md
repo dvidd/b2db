@@ -1,5 +1,5 @@
 # keyvalue
-Distributed key value store made simple using go and leveldb
+Distributed key value store made simple using go and leveldb, made really simple
 
 ## Get started
 ```
