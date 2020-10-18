@@ -1,5 +1,5 @@
-# b2db
-Database backend fusion
+# dkeyvalue
+Distributed key value store made simple using go and leveldb
 
 ## Get started
 ```
