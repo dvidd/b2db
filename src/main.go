@@ -3,7 +3,7 @@ package main
 
 import (
     "fmt"
-    "log"
+    // "log"
     "net/http"
     "os"
     "io/ioutil"
@@ -11,42 +11,20 @@ import (
 )
 
 // Check if index collection 
-
 const dbName = "db.json"
-
-
-func tool_put(index string,key string,j map[string]interface{}) {
-    fmt.Println(index)
-    fmt.Println(key)
-    
-    for k, v := range j {
-        fmt.Printf("%v %v\n", k, v)
-                         
-    }
-
-}
-
-
 
 
 func checkdb() {
     if _, err := os.Stat(dbName); err == nil {
-        // path/to/whatever exists
         fmt.Println("\n Database exists");
-
    }else if os.IsNotExist(err) {
-        // path/to/whatever does *not* exist
         fmt.Println("\n Database does not exists");
         fmt.Println("\n Creating file...");
         createfile();
-
     } else {
-        // Schrodinger: file may or may not exist. See err for details.
         fmt.Println("\n Something went wrong while creatring the database");
-        // Therefore, do *NOT* use !os.IsNotExist(err) to test for file existence
-
 }
-  //   jsonFile, err := os.Open(dbName)
+
 }
 
 func createfile() {
@@ -56,7 +34,34 @@ func createfile() {
     }
 }
 
+func write() {
+    plan, _ := ioutil.ReadFile(dbName)
+    var data interface{}
+    err := json.Unmarshal(plan, &data)
+    fmt.Println(json.Marshal(err))
 
+    
+}
+
+func read() {
+    data, err := ioutil.ReadFile(dbName)
+    data = string(data)
+    var result map[string]interface{}
+
+	// Unmarshal or Decode the JSON to the interface.
+	json.Unmarshal([]byte(data), &result)
+
+	//Reading each value by its key
+	fmt.Println("Id :", result["id"],
+		"\nName :", result["name"],
+		"\nDepartment :", result["department"],
+        "\nDesignation :", result["designation"])
+        
+    if err != nil {
+        fmt.Println("File reading error", err)
+        return
+    }
+}
 
 func put(w http.ResponseWriter, r *http.Request) {
         if r.URL.Path != "/put" {
@@ -100,33 +105,15 @@ func put(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-    var b = []byte(`{"a":"b", "c":1, "d": ["e", "f"]}`)
-    var j map[string]interface{}
-        err := json.Unmarshal(b, &j)
-            if (err != nil) {
-        return
-                                 
-    }
+    read()
 
-
-    tool_put("index","key",j)
 
     
-
-
-    //checkdb()
-
-    //http.HandleFunc("/put", put)
-    //http.HandleFunc("/delete" , delete)
-    //http.HandleFunc("/read" , read)
-    //http.HandleFunc("/update", update)
-    
-    
-    fmt.Printf("Starting server at port 8080\n")
-            if err := http.ListenAndServe(":8080", nil); err != nil {
-            log.Fatal(err)
+    // fmt.Printf("Starting server at port 8080\n")
+    //         if err := http.ListenAndServe(":8080", nil); err != nil {
+    //         log.Fatal(err)
                                             
-    }
+    // }
                     
                     
 }

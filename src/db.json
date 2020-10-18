@@ -1,1 +1,6 @@
-Hello
+{
+  "id": 11,
+  "name": "Irshad",
+  "department": "IT",
+  "designation": "Product Manager"
+}
