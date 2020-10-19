@@ -23,7 +23,6 @@ The aplication sets a server working on :
 For adding a document or a collection or both at the same time
 
 ```json
-
 data {
 
     index: "/main/app/..",
@@ -34,7 +33,7 @@ data {
 ```
 #### /delete Method = [POST]
 For deleting a collection or a document ( Use carefuly )
-```json
+```javascript
 data {
 
     index: "/main/app/..",
@@ -45,11 +44,11 @@ data {
 
 #### /read Method = [POST]
 Read a document or an entire collection
-```json
-data{
-
+```javascript
+data {
+    
     index: "/main/app/..",
-       key: "[YOUR_KEY]",
+    key: "[YOUR_KEY]",
 
 
    }
@@ -57,7 +56,7 @@ data{
 ```
 #### /update Method = [POST]
 Update a document
-```json
+```javascript
 data{
 
     index: "/main/app/document",
@@ -72,7 +71,7 @@ data{
 
 MIT License
 
-Copyright (c) 2020 david
+Copyright (c) 2020 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
