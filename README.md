@@ -22,17 +22,17 @@ The aplication sets a server working on :
 #### /put/ Method = [POST]
 For adding a document or a collection or both at the same time
 
-```json
+```javascript
 data {
 
     index: "/main/app/..",
     key: "[YOUR_KEY]",
     data: "data"
-
-    }
+}
 ```
 #### /delete Method = [POST]
 For deleting a collection or a document ( Use carefuly )
+
 ```javascript
 data {
 
@@ -44,26 +44,27 @@ data {
 
 #### /read Method = [POST]
 Read a document or an entire collection
+
 ```javascript
 data {
     
     index: "/main/app/..",
     key: "[YOUR_KEY]",
 
-
-   }
 }
+
 ```
 #### /update Method = [POST]
 Update a document
 ```javascript
-data{
+
+data {
 
     index: "/main/app/document",
     key: "privatekeyoftheserver",
     data: "data"
 
-    }
+}
 
 
 ```
