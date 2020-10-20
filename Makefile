@@ -1,5 +1,5 @@
-hello:
-	echo "b2db"
+keyvalue:
+	echo "keyvalue"
 
 build:
 	go build -o bin/main main.go
@@ -14,4 +14,4 @@ compile:
 	GOOS=linux GOARCH=arm64 go build -o bin/main-linux-arm64 main.go
 	GOOS=freebsd GOARCH=386 go build -o bin/main-freebsd-386 main.go
 
-all: b2db build
+all: keyvalue build
