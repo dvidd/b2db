@@ -19,7 +19,7 @@ The aplication sets a server working on :
 
 ## Functions :
 
-#### /put/ Method = [POST]
+#### /get Method = [POST]
 For adding a document or a collection or both at the same time
 
 ```javascript
@@ -42,7 +42,7 @@ data {
     }
 ```
 
-#### /read Method = [POST]
+#### /put Method = [POST]
 Read a document or an entire collection
 
 ```javascript
@@ -52,22 +52,6 @@ data {
     key: "[YOUR_KEY]",
 
 }
-
-```
-#### /update Method = [POST]
-Update a document
-```javascript
-
-data {
-
-    index: "/main/app/document",
-    key: "privatekeyoftheserver",
-    data: "data"
-
-}
-
-
-```
 
 
 MIT License
