@@ -1,0 +1,10 @@
+
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+*.csv
