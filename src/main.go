@@ -29,10 +29,6 @@ import (
     "github.com/syndtr/goleveldb/leveldb" 
 )
 
-// func _auth(key string) {
-    
-// }
-
 func add(w http.ResponseWriter, r *http.Request) {
         if r.URL.Path != "/add" {
             http.Error(w, "You should try on POST", http.StatusNotFound)
@@ -71,16 +67,28 @@ func add(w http.ResponseWriter, r *http.Request) {
             
 }
 
-
-
 func main() {
-    db, err := leveldb.OpenFile("db.db", nil)
+
     if err != nil {
         fmt.Println(err)
     }
+
+    data, err := db.Get([]byte("key"), nil)
+    err = db.Put([]byte("key"), []byte("value"), nil)
+
+
+
+
+    fmt.Println(data)
+    err = db.Delete([]byte("key"), nil)
     defer db.Close()
+    
     fmt.Printf("Starting server at port 8080\n")
-            if err := http.ListenAndServe(":8080", nil); err != nil {
+    
+    
+    http.HandleFunc("/add", add)
+
+    if err := http.ListenAndServe(":8080", nil); err != nil {
             log.Fatal(err)
                                             
     }
