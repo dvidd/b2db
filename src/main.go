@@ -69,6 +69,8 @@ func add(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
+    db, err := leveldb.OpenFile("db.db", nil)
+    
     if err != nil {
         fmt.Println(err)
     }
