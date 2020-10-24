@@ -1,22 +1,3 @@
-/* 
-Key Value store api really simple
-
-This file sets a server in port 3000 that is waiting 4 types of petitions
-
-read()
-add()
-delete()
-update()
-
-There is two types of structures which are ;
-    - collection
-    - document
-
-You can read, add, delete a collection and read,update and delete a document 
-
-To get any petition it have to have the secret key
-
- */
 
 
 package main
@@ -28,6 +9,59 @@ import (
     "log"
     "github.com/syndtr/goleveldb/leveldb" 
 )
+
+
+/* 
+
+Key Value store api really simple
+
+This file sets a server in port 3000 that is waiting 3 types of petitions
+
+/get
+/put
+/delete
+ 
+
+*/
+
+
+/* get value from db  */
+func get(key string) {
+        
+    db, err := leveldb.OpenFile("db", nil)
+    
+    if err != nil {
+        fmt.Println(err)
+    }
+    data, err := db.Get([]byte(key),nil)
+    fmt.Println(data)
+    defer db.Close()
+ 
+}
+/* put value into store using a key */
+func put(key string,value string) {
+
+    db, err := leveldb.OpenFile("db", nil)
+    
+    if err != nil {
+        fmt.Println(err)
+    }
+    data, err := db.Get([]byte(key),nil)   
+    fmt.Println(data)
+    defer db.Close()
+}
+/* deleting value with key */
+func delete(key string) {
+    db, err := leveldb.OpenFile("db", nil)
+    
+    if err != nil {
+        fmt.Println(err)
+    }
+    data, err := db.Get([]byte(key),nil)
+    fmt.Println(data)
+    defer db.Close()
+
+}
 
 func add(w http.ResponseWriter, r *http.Request) {
         if r.URL.Path != "/add" {
@@ -54,8 +88,10 @@ func add(w http.ResponseWriter, r *http.Request) {
             
             fmt.Println("Put request")
             
-            fmt.Println(index,key,data)
-            
+
+            fmt.Fprintf(w, "Index = %s\n", index)
+            fmt.Fprintf(w, " Key  = %s\n", key)
+            fmt.Fprintf(w, "Data = %s\n", data)
             // tool_put(index,key,data)
 
 
@@ -64,33 +100,18 @@ func add(w http.ResponseWriter, r *http.Request) {
                 fmt.Fprintf(w, "Sorry, only GET and POST methods are supported.")
                                                                                                                  
     }
-            
+    
 }
 
 func main() {
 
-    db, err := leveldb.OpenFile("db.db", nil)
     
-    if err != nil {
-        fmt.Println(err)
-    }
-
-    data, err := db.Get([]byte("key"), nil)
-    err = db.Put([]byte("key"), []byte("value"), nil)
-
-
-
-
-    fmt.Println(data)
-    err = db.Delete([]byte("key"), nil)
-    defer db.Close()
-    
-    fmt.Printf("Starting server at port 8080\n")
+    fmt.Printf("Starting server at port 3000\n")
     
     
     http.HandleFunc("/add", add)
 
-    if err := http.ListenAndServe(":8080", nil); err != nil {
+    if err := http.ListenAndServe(":3000", nil); err != nil {
             log.Fatal(err)
                                             
     }
