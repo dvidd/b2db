@@ -7,7 +7,6 @@ import (
     "fmt"
     "net/http"
     "log"
-    "encoding/json"
     "github.com/syndtr/goleveldb/leveldb" 
 )
 
@@ -37,14 +36,12 @@ func get(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         fmt.Println(err)
     }
-    err := db.Get([]byte(key),nil)
-    fmt.Println(err)
-    jData, err2 := json.Marshal(data)
+    data ,err2 := db.Get([]byte(key),nil)
+    fmt.Println(data)
     if err2 != nil {
-        fmt.Println("Error unmarshaling data")
+        fmt.Println(err2)
     }
-    w.Header().Set("Content-type", "application/json")
-    w.Write(jData)
+    w.Write(data)
     defer db.Close()
  
 }
@@ -60,8 +57,9 @@ func put(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         fmt.Println(err)
     }
-    data, err := db.Put([]byte(key),[]byte(value), nil)   
-    fmt.Println(data)
+    err = db.Put([]byte(key),[]byte(value), nil)   
+    
+    fmt.Println(err)
     defer db.Close()
 }
 /* deleting value with key */
@@ -75,7 +73,7 @@ func delete(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         fmt.Println(err)
     }
-    err := db.Delete([]byte(key),nil)
+    err = db.Delete([]byte(key),nil)
     fmt.Println(err)
 
     defer db.Close()
