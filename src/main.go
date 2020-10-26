@@ -26,8 +26,12 @@ This file sets a server in port 3000 that is waiting 3 types of petitions
 
 
 /* get value from db  */
-func get(key string) {
+func get(w http.ResponseWriter, r *http.Request) {
         
+    value := r.FormValue("value")
+    key := r.FormValue("key")
+    
+    fmt.Print("%s,%s",key, value)
     db, err := leveldb.OpenFile("db", nil)
     
     if err != nil {
@@ -39,8 +43,12 @@ func get(key string) {
  
 }
 /* put value into store using a key */
-func put(key string,value string) {
+func put(w http.ResponseWriter, r *http.Request) {
 
+    value := r.FormValue("value")
+    key := r.FormValue("key")
+    
+    fmt.Print("%s,%s",key, value)
     db, err := leveldb.OpenFile("db", nil)
     
     if err != nil {
@@ -51,7 +59,13 @@ func put(key string,value string) {
     defer db.Close()
 }
 /* deleting value with key */
-func delete(key string) {
+func delete(w http.ResponseWriter, r *http.Request) {
+            
+    
+    value := r.FormValue("value")
+    key := r.FormValue("key")
+    
+    fmt.Print("%s,%s",key, value)
     db, err := leveldb.OpenFile("db", nil)
     
     if err != nil {
@@ -62,54 +76,13 @@ func delete(key string) {
     defer db.Close()
 
 }
-
-func add(w http.ResponseWriter, r *http.Request) {
-        if r.URL.Path != "/add" {
-            http.Error(w, "You should try on POST", http.StatusNotFound)
-            return
-                                
-        }
-         
-        switch r.Method {
-            case "GET":     
-              http.ServeFile(w, r, "Try with Post")
-            case "POST":
-            // Call ParseForm() to parse the raw query and update r.PostForm and r.Form.
-                if  err := r.ParseForm(); err != nil {
-                    fmt.Fprintf(w, "ParseForm() err: %v", err)
-                    return
-                                                                                         
-            }   
-            
-            fmt.Fprintf(w, "Post from website! r.PostFrom = %v\n", r.PostForm)
-            index := r.FormValue("index")
-            key := r.FormValue("key")
-            data := r.FormValue("data")
-            
-            fmt.Println("Put request")
-            
-
-            fmt.Fprintf(w, "Index = %s\n", index)
-            fmt.Fprintf(w, " Key  = %s\n", key)
-            fmt.Fprintf(w, "Data = %s\n", data)
-            // tool_put(index,key,data)
-
-
-
-            default:
-                fmt.Fprintf(w, "Sorry, only GET and POST methods are supported.")
-                                                                                                                 
-    }
-    
-}
-
 func main() {
-
     
     fmt.Printf("Starting server at port 3000\n")
     
-    
-    http.HandleFunc("/add", add)
+    http.HandleFunc("/put", put)
+    http.HandleFunc("/get", get)
+    http.HandleFunc("/delete",delete)
 
     if err := http.ListenAndServe(":3000", nil); err != nil {
             log.Fatal(err)
