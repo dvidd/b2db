@@ -22,7 +22,7 @@
 bin/
 # or
 */bin/*
-
+.*.swp
 # Unignore all `.jar` in `bin` dir
 !*/bin/*.jar
 
