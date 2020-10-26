@@ -1,4 +1,4 @@
-# keyvalue
+ keyvalue
 Distributed key value store made simple using go and leveldb, made really simple
 
 ## Get started
@@ -19,40 +19,33 @@ The aplication sets a server working on :
 
 ## Functions :
 
+#### /put Method = [POST]
+Read a document or an entire collection
+
+```javascript
+params {
+    key: "[key]",
+    value: "[value]",
+}
+``````
+
 #### /get Method = [POST]
 For adding a document or a collection or both at the same time
 
 ```javascript
-data {
-
-    index: "/main/app/..",
-    key: "[YOUR_KEY]",
-    data: "data"
+params {
+    value: "[value]",
 }
 ```
 #### /delete Method = [POST]
 For deleting a collection or a document ( Use carefuly )
 
 ```javascript
-data {
-
-    index: "/main/app/..",
-    key: "[YOUR_KEY]",
-
+params {
+    value: "[value]"
     }
 ```
 
-#### /put Method = [POST]
-Read a document or an entire collection
-
-```javascript
-data {
-    
-    index: "/main/app/..",
-    key: "[YOUR_KEY]",
-
-}
-``````
 
 MIT License
 
