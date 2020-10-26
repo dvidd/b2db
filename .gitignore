@@ -1,4 +1,6 @@
-src/db
+src/db.db
+
+
 ### OSX ###
 .DS_Store
 .AppleDouble
