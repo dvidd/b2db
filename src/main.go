@@ -7,7 +7,7 @@ import (
     "fmt"
     "net/http"
     "log"
-    "golang.org/x/tools/godoc/util"
+    "util"
     "github.com/syndtr/goleveldb/leveldb" 
 )
 
