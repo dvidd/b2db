@@ -6,10 +6,11 @@ Distributed key value store API made simple using go and leveldb, made really si
 $ git clone https://github.com/dvidd/keyvalue/
 ```
 ```
-$ cd keyvalue
+$ cd keyvalue/src
 ```
 ```
-$ docker run 
+$ go build main.go
+$ ./main
 ```
 
 
