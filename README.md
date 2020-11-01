@@ -1,5 +1,4 @@
- keyvalue
-Distributed key value store API made simple using go and leveldb, made really simple
+ Distributed key value store API made simple using go and leveldb, made really simple
 
 ## Get started
 ```
