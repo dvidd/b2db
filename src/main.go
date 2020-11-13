@@ -80,7 +80,7 @@ func delete(w http.ResponseWriter, r *http.Request) {
     defer db.Close()
 
 }
-/* Iterate over collection subst of elements  
+/* Iterate over collection subst of elements */  
 func subset(w http.ResponseWriter, r *http.Request) {
             
     key := r.FormValue("key")
@@ -91,7 +91,7 @@ func subset(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         fmt.Println(err)
     }
-    ter := db.NewIterator(util.BytesPrefix([]byte(key)), nil)
+    iter := db.NewIterator([]byte("foo-"), nil)
     for iter.Next() {
             fmt.Println(iter)
     }
@@ -100,7 +100,7 @@ func subset(w http.ResponseWriter, r *http.Request) {
     defer db.Close()
 
 }
-* TODO */
+
 
 func main() {
     
