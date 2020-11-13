@@ -7,7 +7,6 @@ import (
     "fmt"
     "net/http"
     "log"
-    "util"
     "github.com/syndtr/goleveldb/leveldb" 
 )
 
@@ -21,7 +20,7 @@ This file sets a server in port 3000 that is waiting 3 types of petitions
 /get
 /put
 /delete
-/subset : for iterate on element in the same collection subset
+TODO: /subset : for iterate on element in the same collection subset
 
 */
 
@@ -81,7 +80,7 @@ func delete(w http.ResponseWriter, r *http.Request) {
     defer db.Close()
 
 }
-/* Iterate over collection subst of elements  */
+/* Iterate over collection subst of elements  
 func subset(w http.ResponseWriter, r *http.Request) {
             
     key := r.FormValue("key")
@@ -101,6 +100,7 @@ func subset(w http.ResponseWriter, r *http.Request) {
     defer db.Close()
 
 }
+* TODO */
 
 func main() {
     
@@ -109,7 +109,7 @@ func main() {
     http.HandleFunc("/put", put)
     http.HandleFunc("/get", get)
     http.HandleFunc("/delete",delete)
-    http.HandleFunt("/subset", subset)
+    // http.HandleFunt("/subset", subset)
     if err := http.ListenAndServe(":3000", nil); err != nil {
             log.Fatal(err)
                                             
